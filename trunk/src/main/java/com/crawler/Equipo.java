@@ -169,5 +169,9 @@ public class Equipo {
 		this.partidosGanadosLocal++;
 	}
 
-	
+	public Integer getPuntosTotales(){
+		Integer partidosGanados = this.partidosGanadosLocal + this.partidosGanadosVisitante;
+		Integer partidosEmpatados = this.partidosEmpatadosLocal + this.partidosEmpatadosVisitante;
+		return (partidosGanados * 3) + (partidosEmpatados);
+	}
 }
