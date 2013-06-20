@@ -166,7 +166,7 @@ public class Equipo {
 	}
 
 	public void sumarPartidoGanadoVisita() {
-		this.partidosGanadosLocal++;
+		this.partidosGanadosVisitante++;
 	}
 
 	public Integer getPuntosTotales(){
@@ -174,4 +174,98 @@ public class Equipo {
 		Integer partidosEmpatados = this.partidosEmpatadosLocal + this.partidosEmpatadosVisitante;
 		return (partidosGanados * 3) + (partidosEmpatados);
 	}
+
+	public Integer getPartidosJugados() {
+		return this.partidosEmpatadosLocal + this.partidosEmpatadosVisitante + this.partidosPerdidosLocal + this.partidosPerdidosVisitante + 
+					this.partidosGanadosLocal + this.partidosGanadosVisitante;
+	}
+
+	private Double promedio(Integer numerador, Integer divisor){
+		double x = numerador.doubleValue();
+		double y = divisor.doubleValue();
+		return (x/y);
+	}
+	
+	public Integer getCantPartidosLocal(){
+		return this.partidosGanadosLocal + this.partidosEmpatadosLocal + this.partidosPerdidosLocal;
+	}
+	
+	public Integer getCantPartidosVisita(){
+		return this.partidosGanadosVisitante + this.partidosEmpatadosVisitante + this.partidosPerdidosVisitante;
+	}
+	
+	public Double getPromedioPartidoGanadoLocal(){
+		Integer partidosLocal = this.getCantPartidosLocal();
+		return this.promedio(this.partidosGanadosLocal, partidosLocal);
+	}
+	
+	public Double getPromedioPartidoEmpatadoLocal(){
+		Integer partidosLocal = this.getCantPartidosLocal();
+		return this.promedio(this.partidosEmpatadosLocal, partidosLocal);
+	}
+
+	public Double getPromedioPartidoPerdidoLocal(){
+		Integer partidosLocal = this.getCantPartidosLocal();
+		return this.promedio(this.partidosPerdidosLocal, partidosLocal);
+	}
+
+	public Double getPromedioPartidoGanadoVisita(){
+		Integer partidosVisita = this.getCantPartidosVisita();
+		return this.promedio(this.partidosGanadosVisitante, partidosVisita);
+	}
+	
+	public Double getPromedioPartidoEmpatadoVisita(){
+		Integer partidosVisita = this.getCantPartidosVisita();
+		return this.promedio(this.partidosEmpatadosVisitante, partidosVisita);
+	}
+
+	public Double getPromedioPartidoPerdidoVisita(){
+		Integer partidosVisita = this.getCantPartidosVisita();
+		return this.promedio(this.partidosPerdidosVisitante, partidosVisita);
+	}
+	
+	public Double getPromedioGolesAFavorLocal(){
+		Integer partidosLocal = this.getCantPartidosLocal();
+		return this.promedio(this.golesAFavorLocal, partidosLocal);
+	}
+	
+	public Double getPromedioGolesAFavorVisita(){
+		Integer partidosVisita = this.getCantPartidosVisita();
+		return this.promedio(this.golesAFavorVisitante, partidosVisita);
+	}
+	
+	public Double getPromedioGolesEncontraLocal(){
+		Integer partidosLocal = this.getCantPartidosLocal();
+		return this.promedio(this.golesEncontraLocal, partidosLocal);
+	}
+	
+	public Double getPromedioGolesEncontraVisita(){
+		Integer partidosVisita = this.getCantPartidosVisita();
+		return this.promedio(this.golesEncontraVisitante, partidosVisita);
+	}
+	
+	public Double getPromedioPuntosLocal(){
+		Integer puntosTotalesLocal = (this.partidosGanadosLocal * 3) + (this.partidosEmpatadosLocal);
+		Integer partidosLocal = this.getCantPartidosLocal();
+		return this.promedio(puntosTotalesLocal, partidosLocal);
+	}
+	
+	public Double getPromedioPuntosVisita(){
+		Integer puntosTotalesVisita = (this.partidosGanadosVisitante * 3) + (this.partidosEmpatadosVisitante);
+		Integer partidosVisita = this.getCantPartidosVisita();
+		return this.promedio(puntosTotalesVisita, partidosVisita);
+	}
+	
+	public Double getPromedioPuntosTotales(){
+		return this.promedio(this.getPuntosTotales(), this.getPartidosJugados());
+	}
+	
+	public Boolean esRiver(){
+		return (Constants.RIVER.equals(this.nombre));
+	}
+	
+	public Boolean esBoca(){
+		return (Constants.BOCA.equals(this.nombre));
+	}
+
 }
