@@ -1,5 +1,6 @@
 package com.crawler;
 
+
 public class Equipo {
 	
 	private String nombre;
@@ -13,7 +14,22 @@ public class Equipo {
 	private Integer partidosEmpatadosVisitante;
 	private Integer partidosPerdidosLocal;
 	private Integer partidosPerdidosVisitante;
+	private Double promedioPartidoGanadoLocal;
+	private Double promedioPartidoEmpatadoLocal;
+	private Double promedioPartidoPerdidoLocal;
+	private Double promedioPartidoGanadoVisita;
+	private Double promedioPartidoEmpatadoVisita;
+	private Double promedioPartidoPerdidoVisita;
+	private Double promedioGolesAFavorLocal;
+	private Double promedioGolesAFavorVisita;
+	private Double promedioGolesEncontraLocal;
+	private Double promedioGolesEncontraVisita;
+	private Double promedioPuntosLocal;
+	private Double promedioPuntosVisita;
+	private Double promedioPuntosTotales;
 	private Boolean esEquipoGrande = Boolean.FALSE;
+	private Boolean esBoca = Boolean.FALSE;
+	private Boolean esRiver = Boolean.FALSE;
 	
 	public Equipo(String nombre){
 		this.nombre = nombre;
@@ -30,6 +46,11 @@ public class Equipo {
 		if (Constants.BOCA.equals(nombre.trim()) || Constants.RIVER.equals(nombre.trim()) || Constants.RACING.equals(nombre.trim())
 				|| Constants.SAN_LORENZO.equals(nombre.trim())|| Constants.INDEPTE.equals(nombre.trim())){
 			esEquipoGrande = Boolean.TRUE;
+		}
+		if (Constants.BOCA.equals(nombre.trim())){
+			setEsBoca(Boolean.TRUE);
+		} else if (Constants.RIVER.equals(nombre.trim())){
+			setEsRiver(Boolean.TRUE);
 		}
 	}
 	
@@ -194,78 +215,213 @@ public class Equipo {
 		return this.partidosGanadosVisitante + this.partidosEmpatadosVisitante + this.partidosPerdidosVisitante;
 	}
 	
-	public Double getPromedioPartidoGanadoLocal(){
+	public void actualizarPromedios(){
+		this.setPromedioPartidoGanadoLocal(calcularPromedioPartidoGanadoLocal());
+		this.setPromedioPartidoEmpatadoLocal(calcularPromedioPartidoEmpatadoLocal());
+		this.setPromedioPartidoPerdidoLocal(calcularPromedioPartidoPerdidoLocal());
+		this.setPromedioPartidoGanadoVisita(calcularPromedioPartidoGanadoVisita());
+		this.setPromedioPartidoEmpatadoVisita(calcularPromedioPartidoEmpatadoVisita());
+		this.setPromedioPartidoPerdidoVisita(calcularPromedioPartidoPerdidoVisita());
+		this.setPromedioGolesAFavorLocal(calcularPromedioGolesAFavorLocal());
+		this.setPromedioGolesAFavorVisita(calcularPromedioGolesAFavorVisita());
+		this.setPromedioGolesEncontraLocal(calcularPromedioGolesEncontraLocal());
+		this.setPromedioGolesEncontraVisita(calcularPromedioGolesEncontraVisita());
+		this.setPromedioPuntosLocal(calcularPromedioPuntosLocal());
+		this.setPromedioPuntosVisita(calcularPromedioPuntosVisita());
+		this.setPromedioPuntosTotales(calcularPromedioPuntosTotales());
+	}
+	
+	public Double calcularPromedioPartidoGanadoLocal(){
 		Integer partidosLocal = this.getCantPartidosLocal();
 		return this.promedio(this.partidosGanadosLocal, partidosLocal);
 	}
 	
-	public Double getPromedioPartidoEmpatadoLocal(){
+	public Double calcularPromedioPartidoEmpatadoLocal(){
 		Integer partidosLocal = this.getCantPartidosLocal();
 		return this.promedio(this.partidosEmpatadosLocal, partidosLocal);
 	}
 
-	public Double getPromedioPartidoPerdidoLocal(){
+	public Double calcularPromedioPartidoPerdidoLocal(){
 		Integer partidosLocal = this.getCantPartidosLocal();
 		return this.promedio(this.partidosPerdidosLocal, partidosLocal);
 	}
 
-	public Double getPromedioPartidoGanadoVisita(){
+	public Double calcularPromedioPartidoGanadoVisita(){
 		Integer partidosVisita = this.getCantPartidosVisita();
 		return this.promedio(this.partidosGanadosVisitante, partidosVisita);
 	}
 	
-	public Double getPromedioPartidoEmpatadoVisita(){
+	public Double calcularPromedioPartidoEmpatadoVisita(){
 		Integer partidosVisita = this.getCantPartidosVisita();
 		return this.promedio(this.partidosEmpatadosVisitante, partidosVisita);
 	}
 
-	public Double getPromedioPartidoPerdidoVisita(){
+	public Double calcularPromedioPartidoPerdidoVisita(){
 		Integer partidosVisita = this.getCantPartidosVisita();
 		return this.promedio(this.partidosPerdidosVisitante, partidosVisita);
 	}
 	
-	public Double getPromedioGolesAFavorLocal(){
+	public Double calcularPromedioGolesAFavorLocal(){
 		Integer partidosLocal = this.getCantPartidosLocal();
 		return this.promedio(this.golesAFavorLocal, partidosLocal);
 	}
 	
-	public Double getPromedioGolesAFavorVisita(){
+	public Double calcularPromedioGolesAFavorVisita(){
 		Integer partidosVisita = this.getCantPartidosVisita();
 		return this.promedio(this.golesAFavorVisitante, partidosVisita);
 	}
 	
-	public Double getPromedioGolesEncontraLocal(){
+	public Double calcularPromedioGolesEncontraLocal(){
 		Integer partidosLocal = this.getCantPartidosLocal();
 		return this.promedio(this.golesEncontraLocal, partidosLocal);
 	}
 	
-	public Double getPromedioGolesEncontraVisita(){
+	public Double calcularPromedioGolesEncontraVisita(){
 		Integer partidosVisita = this.getCantPartidosVisita();
 		return this.promedio(this.golesEncontraVisitante, partidosVisita);
 	}
 	
-	public Double getPromedioPuntosLocal(){
+	public Double calcularPromedioPuntosLocal(){
 		Integer puntosTotalesLocal = (this.partidosGanadosLocal * 3) + (this.partidosEmpatadosLocal);
 		Integer partidosLocal = this.getCantPartidosLocal();
 		return this.promedio(puntosTotalesLocal, partidosLocal);
 	}
 	
-	public Double getPromedioPuntosVisita(){
+	public Double calcularPromedioPuntosVisita(){
 		Integer puntosTotalesVisita = (this.partidosGanadosVisitante * 3) + (this.partidosEmpatadosVisitante);
 		Integer partidosVisita = this.getCantPartidosVisita();
 		return this.promedio(puntosTotalesVisita, partidosVisita);
 	}
 	
-	public Double getPromedioPuntosTotales(){
+	public Double calcularPromedioPuntosTotales(){
 		return this.promedio(this.getPuntosTotales(), this.getPartidosJugados());
 	}
-	
-	public Boolean esRiver(){
-		return (Constants.RIVER.equals(this.nombre));
-	}
-	
-	public Boolean esBoca(){
-		return (Constants.BOCA.equals(this.nombre));
+
+	public Double getPromedioPartidoGanadoLocal() {
+		return promedioPartidoGanadoLocal;
 	}
 
+	public void setPromedioPartidoGanadoLocal(Double promedioPartidoGanadoLocal) {
+		this.promedioPartidoGanadoLocal = promedioPartidoGanadoLocal;
+	}
+
+	public Double getPromedioPartidoEmpatadoLocal() {
+		return promedioPartidoEmpatadoLocal;
+	}
+
+	public void setPromedioPartidoEmpatadoLocal(
+			Double promedioPartidoEmpatadoLocal) {
+		this.promedioPartidoEmpatadoLocal = promedioPartidoEmpatadoLocal;
+	}
+
+	public Double getPromedioPartidoPerdidoLocal() {
+		return promedioPartidoPerdidoLocal;
+	}
+
+	public void setPromedioPartidoPerdidoLocal(
+			Double promedioPartidoPerdidoLocal) {
+		this.promedioPartidoPerdidoLocal = promedioPartidoPerdidoLocal;
+	}
+
+	public void setPromedioPartidoGanadoVisita(
+			Double promedioPartidoGanadoVisita) {
+		this.promedioPartidoGanadoVisita = promedioPartidoGanadoVisita;
+	}
+	
+	public Double getPromedioPartidoGanadoVisita() {
+		return this.promedioPartidoGanadoVisita;
+	}
+
+
+	public Double getPromedioPartidoEmpatadoVisita() {
+		return promedioPartidoEmpatadoVisita;
+	}
+
+	public void setPromedioPartidoEmpatadoVisita(
+			Double promedioPartidoEmpatadoVisita) {
+		this.promedioPartidoEmpatadoVisita = promedioPartidoEmpatadoVisita;
+	}
+
+	public Double getPromedioPartidoPerdidoVisita() {
+		return promedioPartidoPerdidoVisita;
+	}
+
+	public void setPromedioPartidoPerdidoVisita(
+			Double promedioPartidoPerdidoVisita) {
+		this.promedioPartidoPerdidoVisita = promedioPartidoPerdidoVisita;
+	}
+
+	public Double getPromedioGolesAFavorVisita() {
+		return promedioGolesAFavorVisita;
+	}
+
+	public void setPromedioGolesAFavorVisita(Double promedioGolesAFavorVisita) {
+		this.promedioGolesAFavorVisita = promedioGolesAFavorVisita;
+	}
+
+	public Double getPromedioGolesAFavorLocal() {
+		return promedioGolesAFavorLocal;
+	}
+
+	public void setPromedioGolesAFavorLocal(Double promedioGolesAFavorLocal) {
+		this.promedioGolesAFavorLocal = promedioGolesAFavorLocal;
+	}
+
+	public Double getPromedioGolesEncontraLocal() {
+		return promedioGolesEncontraLocal;
+	}
+
+	public void setPromedioGolesEncontraLocal(Double promedioGolesEncontraLocal) {
+		this.promedioGolesEncontraLocal = promedioGolesEncontraLocal;
+	}
+
+	public Double getPromedioGolesEncontraVisita() {
+		return promedioGolesEncontraVisita;
+	}
+
+	public void setPromedioGolesEncontraVisita(
+			Double promedioGolesEncontraVisita) {
+		this.promedioGolesEncontraVisita = promedioGolesEncontraVisita;
+	}
+
+	public Double getPromedioPuntosLocal() {
+		return promedioPuntosLocal;
+	}
+
+	public void setPromedioPuntosLocal(Double promedioPuntosLocal) {
+		this.promedioPuntosLocal = promedioPuntosLocal;
+	}
+
+	public Double getPromedioPuntosVisita() {
+		return promedioPuntosVisita;
+	}
+
+	public void setPromedioPuntosVisita(Double promedioPuntosVisita) {
+		this.promedioPuntosVisita = promedioPuntosVisita;
+	}
+
+	public Double getPromedioPuntosTotales() {
+		return promedioPuntosTotales;
+	}
+
+	public void setPromedioPuntosTotales(Double promedioPuntosTotales) {
+		this.promedioPuntosTotales = promedioPuntosTotales;
+	}
+
+	public Boolean getEsBoca() {
+		return esBoca;
+	}
+
+	public void setEsBoca(Boolean esBoca) {
+		this.esBoca = esBoca;
+	}
+
+	public Boolean getEsRiver() {
+		return esRiver;
+	}
+
+	public void setEsRiver(Boolean esRiver) {
+		this.esRiver = esRiver;
+	}
+	
 }

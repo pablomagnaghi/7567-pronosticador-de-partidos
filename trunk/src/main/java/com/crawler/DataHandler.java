@@ -27,6 +27,8 @@ public class DataHandler {
 			local.sumarPartidoPerdidoLocal();
 			visita.sumarPartidoGanadoVisita();
 		}
+		local.actualizarPromedios();
+		visita.actualizarPromedios();
 	}
 	
 	private Equipo agregarEquipo(String equipo){
