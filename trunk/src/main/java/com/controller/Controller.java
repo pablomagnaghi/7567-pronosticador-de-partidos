@@ -5,6 +5,8 @@ import com.crawler.Spider;
 import com.view.ResultView;
 import com.view.StartView;
 
+import com.drools.Evaluator;
+
 public class Controller {
 	
 	private StartView vistaInicio;
@@ -22,10 +24,11 @@ public class Controller {
 		String visita = String.valueOf(this.vistaInicio.getComboBox_1().getSelectedItem());
 		if (local.equals(visita)){
 			System.out.println("Son iguales");
-		} else {
-			//ACA SE SACA INFORMACION DE DROOLS!!
-			System.out.println(this.spider.getHandler().getEquipos().get(Constants.BOCA).getPuntosTotales());
-			ResultView resultView = new ResultView(local, visita, "hola"	);
+		} else {			
+			// ACA SE SACA INFORMACION DE DROOLS!!
+			String result = Evaluator.evaluate(this.spider.getHandler().getEquipos().get(local),this.spider.getHandler().getEquipos().get(visita));
+			//System.out.println(this.spider.getHandler().getEquipos().get(Constants.BOCA).getPuntosTotales());
+			ResultView resultView = new ResultView(local, visita, result);
 			resultView.display();
 		}
 	}

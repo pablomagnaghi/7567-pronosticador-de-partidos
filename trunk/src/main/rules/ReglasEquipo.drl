@@ -1,0 +1,16 @@
+package com
+ 
+import com.crawler.Equipo;
+import java.util.*
+
+global Integer PUNTAJE_EQUIPO;
+
+rule "cantidad de goles a favor"
+dialect "mvel"
+when
+	$class : Equipo(golesAFavorLocal > 9)
+then
+	System.out.println("Rule: cantidad de goles a favor. Equipo: " + $class.nombre);
+	PUNTAJE_EQUIPO =+ 30;
+
+end
