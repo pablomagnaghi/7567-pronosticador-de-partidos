@@ -46,9 +46,9 @@ public class Constants {
 		"Atlético de Rafaela"
 	};
 
-	public static final String ARCHIVO_1 = "archivos/clausura2011.html";
-	public static final String ARCHIVO_2 = "archivos/apertura2011.html";
-	public static final String ARCHIVO_3 = "archivos/clausura2012.html";
-	public static final String ARCHIVO_4 = "archivos/apertura2012.html";
+	public static final String ARCHIVO_4 = "archivos/clausura2011.html";
+	public static final String ARCHIVO_3 = "archivos/apertura2011.html";
+	public static final String ARCHIVO_2 = "archivos/clausura2012.html";
+	public static final String ARCHIVO_1 = "archivos/apertura2012.html";
 
 }

@@ -27,7 +27,6 @@ public class Controller {
 		} else {			
 			// ACA SE SACA INFORMACION DE DROOLS!!
 			String result = Evaluator.evaluate(this.spider.getHandler().getEquipos().get(local),this.spider.getHandler().getEquipos().get(visita));
-			//System.out.println(this.spider.getHandler().getEquipos().get(Constants.BOCA).getPuntosTotales());
 			ResultView resultView = new ResultView(local, visita, result);
 			resultView.display();
 		}
