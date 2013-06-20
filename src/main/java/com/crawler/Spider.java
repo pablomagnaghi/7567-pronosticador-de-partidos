@@ -20,13 +20,9 @@ public class Spider {
 		try {
 			String html = loadPage(fileName);
 			List<String> fechas = extractSetOfData(html, obtenerFecha);
-			int i = 1;
 			for (String fecha : fechas) {
-				System.out.println(i);
 				List<String> partidos = extractSetOfData(fecha, obtenerPartidos);
-				int j = 1;
 				for (String partido : partidos) {
-					System.out.print(j + " - ");
 					String infoImportante = getFirstGroup(partido, obtenerInfoPartido);
 					Matcher m = obtenerResultados.matcher(infoImportante);
 					if (m.find()){
@@ -35,13 +31,9 @@ public class Spider {
 						String equipoB = m.group(3);
 						String golesEquipoA = goles.split(":")[0];
 						String golesEquipoB = goles.split(":")[1];
-						System.out.println(equipoA);
-						//getHandler().addNewResult(equipoA, equipoB, new Integer(golesEquipoA.trim()), new Integer(golesEquipoB.trim()));
+						getHandler().addNewResult(equipoA, equipoB, new Integer(golesEquipoA.trim()), new Integer(golesEquipoB.trim()));
 					}
-					j++;
 				}
-				System.out.println();
-				i++;
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
