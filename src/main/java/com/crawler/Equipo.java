@@ -13,7 +13,7 @@ public class Equipo {
 	private Integer partidosEmpatadosVisitante;
 	private Integer partidosPerdidosLocal;
 	private Integer partidosPerdidosVisitante;
-	private Boolean esEquipoGrande;
+	private Boolean esEquipoGrande = Boolean.FALSE;
 	
 	public Equipo(String nombre){
 		this.nombre = nombre;
