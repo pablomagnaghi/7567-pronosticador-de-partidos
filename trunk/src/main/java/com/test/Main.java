@@ -12,8 +12,9 @@ public class Main {
 	public static void main(String[] args) {
 		Spider s = new Spider();
 		s.readNewData("archivos/apertura2012.html");
-		Equipo equipo = s.getHandler().getEquipos().get(Constants.BOCA);
+		Equipo equipo = s.getHandler().getEquipos().get(Constants.VELEZ);
 		System.out.println(equipo.getPuntosTotales());
+		
 	}
 
 }

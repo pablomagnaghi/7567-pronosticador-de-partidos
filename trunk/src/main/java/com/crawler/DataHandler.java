@@ -20,7 +20,7 @@ public class DataHandler {
 		if (golesLocal > golesVisitante){
 			local.sumarPartidoGanadoLocal();
 			visita.sumarPartidoPerdidoVisita();
-		} else if (golesLocal == golesVisitante){
+		} else if (golesLocal.equals(golesVisitante)){
 			local.sumarPartidoEmpatadoLocal();
 			visita.sumarPartidoEmpatadoVisita();
 		} else {
