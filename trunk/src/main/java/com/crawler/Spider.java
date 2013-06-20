@@ -35,7 +35,8 @@ public class Spider {
 						String equipoB = m.group(3);
 						String golesEquipoA = goles.split(":")[0];
 						String golesEquipoB = goles.split(":")[1];
-						getHandler().addNewResult(equipoA, equipoB, new Integer(golesEquipoA.trim()), new Integer(golesEquipoB.trim()));
+						System.out.println(equipoA);
+						//getHandler().addNewResult(equipoA, equipoB, new Integer(golesEquipoA.trim()), new Integer(golesEquipoB.trim()));
 					}
 					j++;
 				}
