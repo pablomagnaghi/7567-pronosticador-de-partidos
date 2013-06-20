@@ -23,4 +23,32 @@ public class Constants {
 	public static final String UNION = "Unión";
 	public static final String RAFAELA = "Atlético de Rafaela";
 	
+	public static final String[] equipos = {
+		"Boca Juniors",
+		"Independiente",
+		"Racing Club",
+		"San Lorenzo",
+		"River Plate",
+		"Arsenal",
+		"Vélez Sarsfield",
+		"Colón",
+		"Quilmes",
+		"Newell's Old Boys",
+		"Godoy Cruz",
+		"Tigre",
+		"San Martín (SJ)",
+		"Lanús",
+		"Estudiantes",
+		"All Boys",
+		"Belgrano",
+		"Argentinos Juniors",
+		"Unión",
+		"Atlético de Rafaela"
+	};
+
+	public static final String ARCHIVO_1 = "archivos/clausura2011.html";
+	public static final String ARCHIVO_2 = "archivos/apertura2011.html";
+	public static final String ARCHIVO_3 = "archivos/clausura2012.html";
+	public static final String ARCHIVO_4 = "archivos/apertura2012.html";
+
 }
