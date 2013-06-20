@@ -14,22 +14,30 @@ public class Equipo {
 	private Integer partidosEmpatadosVisitante;
 	private Integer partidosPerdidosLocal;
 	private Integer partidosPerdidosVisitante;
+	//
 	private Double promedioPartidoGanadoLocal;
 	private Double promedioPartidoEmpatadoLocal;
 	private Double promedioPartidoPerdidoLocal;
+	//
 	private Double promedioPartidoGanadoVisita;
 	private Double promedioPartidoEmpatadoVisita;
 	private Double promedioPartidoPerdidoVisita;
+	//
 	private Double promedioGolesAFavorLocal;
 	private Double promedioGolesAFavorVisita;
 	private Double promedioGolesEncontraLocal;
 	private Double promedioGolesEncontraVisita;
+	//
 	private Double promedioPuntosLocal;
 	private Double promedioPuntosVisita;
 	private Double promedioPuntosTotales;
+	//
 	private Boolean esEquipoGrande = Boolean.FALSE;
 	private Boolean esBoca = Boolean.FALSE;
 	private Boolean esRiver = Boolean.FALSE;
+	private Boolean esLocal = Boolean.FALSE;
+	
+	private Integer puntaje;
 	
 	public Equipo(String nombre){
 		this.nombre = nombre;
@@ -422,6 +430,31 @@ public class Equipo {
 
 	public void setEsRiver(Boolean esRiver) {
 		this.esRiver = esRiver;
+	}
+	
+	public Boolean getEsLocal() {
+		return esLocal;
+	}
+
+	public void setEsLocal(Boolean esLocal) {
+		this.esLocal = esLocal;
+	}
+	
+	public void sumarPuntaje (Integer puntaje) {
+		this.puntaje += puntaje;
+	}
+
+
+	public void restarPuntaje (Integer puntaje) {
+		this.puntaje -= puntaje;
+	}
+	
+	public Integer getPuntaje () {
+		return this.puntaje;
+	}
+	
+	public void setPuntaje (Integer puntaje) {
+		this.puntaje = puntaje;
 	}
 	
 }
