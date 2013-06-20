@@ -9,7 +9,7 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		Spider s = new Spider();
-		s.readNewData("/home/luiggi/Escritorio/fallas/Fallas/apertura2012.html");
+		s.readNewData("archivos/apertura2012.html");
 	}
 
 }
